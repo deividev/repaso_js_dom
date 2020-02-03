@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- comentario -->
+    <title>To-Do List</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<div class="main-wrapper">
+    <h1>To-do-List!</h1>
+    <button id="start" onclick="addToDo()">Añadir Tarea</button>
+    <input type="text" id="input">
+    <button id="textOrder">(A-Z)</button>
+    <button id="textOrder">Prioritarios primero</button>
+    <button id="textOrder">Orden por defecto</button>
+    <div>
+      <label for="textFilter">Texto:</label>
+      <input type="text" id="textFilter">
+    </div>
+    <div>
+      <label for="textFilter">Dias:</label>
+      <input type="number" id="dateFilter">
+    </div>
+    <div class="wrapper-list">
+        <ul class="todo-list" id="list">
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="./index.js"></script>
+</body>
+</html>
