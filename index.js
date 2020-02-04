@@ -1,19 +1,15 @@
+var array;
 
+const list = document.getElementById('list');
+const inputNode = document.getElementById('input');
+inputNode.addEventListener('keydown', addTodoEnter);
 
-
-var array = [''];
-
-console.log(array); 
 
 
 function pintar() {
     const li = document.createElement('li');
     const input = document.getElementById('input');
-    
-    if (input.value === ''){
-        alert("No dejes el campo vacio");
-        return
-    }   
+    array = [li];
     const text = document.createTextNode(input.value);
     const ul = document.getElementById('list');
     const btnDelete = addDeleteBtnElement();
@@ -27,26 +23,20 @@ function pintar() {
     ul.appendChild(li);
     input.value = '';
 }
-pintar();
-console.log(array);
+
 
 function addToDo () {
-    const li = document.createElement('li');
-    const input = document.getElementById('input');
-    if (input.value === ''){
-        alert("No dejes el campo vacio");
-        return
-    }   
+    pintar(); 
     const text = document.createTextNode(input.value);
     const ul = document.getElementById('list');
     const btnDelete = addDeleteBtnElement();
     const btnEdit = addEditBtnElement();
     const btnDone = addDoneBtnElement();
-    li.appendChild(text);
-    li.appendChild(btnDelete);
-    li.appendChild(btnEdit);
-    li.appendChild(btnDone);
-    li.classList.add("task");
+    array.appendChild(text);
+    array.appendChild(btnDelete);
+    array.appendChild(btnEdit);
+    array.appendChild(btnDone);
+    array.classList.add("task");
     ul.appendChild(li);
     input.value = '';
 }
@@ -128,6 +118,6 @@ function saveElement(event) {
 
 function addTodoEnter(event) {
     if (event.keyCode === 13){
-      addToDo();
+      pintar();
     } 
 }
