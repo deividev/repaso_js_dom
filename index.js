@@ -1,44 +1,40 @@
-var array;
+
 
 const list = document.getElementById('list');
 const inputNode = document.getElementById('input');
 inputNode.addEventListener('keydown', addTodoEnter);
 
-
-
-function pintar() {
-    const li = document.createElement('li');
-    const input = document.getElementById('input');
-    array = [li];
-    const text = document.createTextNode(input.value);
+const miArray = [];
+function pintar(inputArray) {
+    /*arrayTasks.forEach(function stack(){
+        while (i = arrayTasks.shift() !== undefined)  {
+            function addToDo();
+        }
+    })*/
+    const myNode = document.getElementById("list");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
     const ul = document.getElementById('list');
-    const btnDelete = addDeleteBtnElement();
-    const btnEdit = addEditBtnElement();
-    const btnDone = addDoneBtnElement();
-    li.appendChild(text);
-    li.appendChild(btnDelete);
-    li.appendChild(btnEdit);
-    li.appendChild(btnDone);
-    li.classList.add("task");
-    ul.appendChild(li);
-    input.value = '';
+    inputArray.forEach(elem => {
+        const li = document.createElement('li');
+        const text = document.createTextNode(elem.text);
+        // meter botones
+        li.appendChild(text);
+        li.classList.add("task");//a ese li que se crea le metemos la case "task"
+        ul.appendChild(li);
+    });
 }
-
-
-function addToDo () {
-    pintar(); 
-    const text = document.createTextNode(input.value);
-    const ul = document.getElementById('list');
-    const btnDelete = addDeleteBtnElement();
-    const btnEdit = addEditBtnElement();
-    const btnDone = addDoneBtnElement();
-    array.appendChild(text);
-    array.appendChild(btnDelete);
-    array.appendChild(btnEdit);
-    array.appendChild(btnDone);
-    array.classList.add("task");
-    ul.appendChild(li);
-    input.value = '';
+function addTodo2() {
+    const input = document.getElementById('input');
+    const end = document.getElementById('end');
+    miArray.push({
+        id: miArray.length,
+        text: input.value,
+        end: new Date(end.value),
+        visible: true
+    });
+    pintar(miArray);
 }
 function addDeleteBtnElement () {
     const btnDelete = document.createElement('button');
