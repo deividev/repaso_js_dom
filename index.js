@@ -5,12 +5,8 @@ const inputNode = document.getElementById('input');
 inputNode.addEventListener('keydown', addTodoEnter);
 
 const miArray = [];
+
 function pintar(inputArray) {
-    /*arrayTasks.forEach(function stack(){
-        while (i = arrayTasks.shift() !== undefined)  {
-            function addToDo();
-        }
-    })*/
     const myNode = document.getElementById("list");
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
@@ -19,19 +15,26 @@ function pintar(inputArray) {
     inputArray.forEach(elem => {
         const li = document.createElement('li');
         const text = document.createTextNode(elem.text);
+        const dates = document.createTextNode(` ${elem.end.locale('es').format('LLLL')} `);
         // meter botones
         li.appendChild(text);
+        li.appendChild(dates);
         li.classList.add("task");//a ese li que se crea le metemos la case "task"
         ul.appendChild(li);
+        input.value = "";
     });
 }
-function addTodo2() {
+function addToDo() {
     const input = document.getElementById('input');
-    const end = document.getElementById('end');
+    const dates = moment(document.getElementById('end').value);
+    if (input.value === ''){
+        alert("No dejes el campo vacio");
+        return
+    }   
     miArray.push({
         id: miArray.length,
         text: input.value,
-        end: new Date(end.value),
+        end: moment(dates.value),
         visible: true
     });
     pintar(miArray);
@@ -39,21 +42,21 @@ function addTodo2() {
 function addDeleteBtnElement () {
     const btnDelete = document.createElement('button');
     btnDelete.appendChild(document.createTextNode('Delete'));
-    btnDelete.addEventListener("click", deleteElement, {onde : true});
+    btnDelete.addEventListener("click", deleteElement, {once : true});
     btnDelete.classList.add('action-btn');
     return btnDelete;
 }
 function addEditBtnElement () {
     const btnEdit = document.createElement('button');
     btnEdit.appendChild(document.createTextNode('Edit'));
-    btnEdit.addEventListener("click", editElement, {onde : true});
+    btnEdit.addEventListener("click", editElement, {once : true});
     btnEdit.classList.add('action-btn');
     return btnEdit;
 }
 function addDoneBtnElement () {
     const btnDone = document.createElement('button');
     btnDone.appendChild(document.createTextNode('Done'));
-    btnDone.addEventListener("click", doneElement, {onde : true})
+    btnDone.addEventListener("click", doneElement, {once : true})
     btnDone.classList.add('action-btn');
     return btnDone;
 }
@@ -61,7 +64,7 @@ function addDoneBtnElement () {
 function addSaveBtnElement () {
     const btnSave = document.createElement('button');
     btnSave.appendChild(document.createTextNode('Save'));
-    btnSave.addEventListener("click", saveElement, {onde : true});
+    btnSave.addEventListener("click", saveElement, {once : true});
     btnSave.classList.add('action-btn');
     return btnSave;
 }
@@ -70,7 +73,7 @@ function deleteElement(event) {
     //const li = e.target.parentElement;
     //const ul = li.parentElement;
     //ul.removeChild(li);
-    list.removeChild(event.currentTarget.parentElement);
+    miArray.removeChild(event.currentTarget.parentElement);
 }
 function doneElement(event) {
     //li.style.background = "#02db3c"
@@ -114,6 +117,6 @@ function saveElement(event) {
 
 function addTodoEnter(event) {
     if (event.keyCode === 13){
-      pintar();
+        addToDo();
     } 
 }
