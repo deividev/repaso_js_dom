@@ -43,9 +43,10 @@ describe("addToDo", function () {
     const inputElement = document.createElement('input');
     inputElement.value = 'Hola';
     const ulElement = document.createElement('ul');
+    const dates = moment();
     debugger
-    addToDo(tasks, inputElement, ulElement);
-    expect(tasks.length).toEqual(1);
+    addToDo(tasks, inputElement, ulElement, dates);
+    expect(tasks.length, dates).toEqual(1);
   })
 
 })

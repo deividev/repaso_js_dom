@@ -7,23 +7,23 @@ function pintar(ulElement, tasks) {
  tasks.forEach(elem => {
     const li = document.createElement('li');
     const text = document.createTextNode(elem.text);
-    //const dates = document.createTextNode(` ${elem.end.locale('es').format('LLLL')} `);
+    const dates = document.createTextNode(` ${elem.end.locale('es').format('LLLL')} `);
     li.appendChild(text);
-    //li.appendChild(dates);
+    li.appendChild(dates);
     li.classList.add("task");
     ulElement.appendChild(li);
  });
 }
 
-function addToDo(tasks, inputElement, ulElement) {
+function addToDo(tasks, inputElement, ulElement,dates) {
   const text = inputElement.value;
   tasks.push({
       id: tasks.length,
       text: text,
-      end: new Date(),
+      end: moment(dates),
       visible: true
   });
-  pintar(ulElement, tasks);
+  pintar(ulElement, tasks, dates);
 }
 
 function addDeleteBtnElement() {
@@ -58,4 +58,8 @@ function addTodoOnEnter(e) {
 
 }
 
-
+function addTodoEnter(event) {
+    if (event.keyCode === 13){
+        addToDo();
+    } 
+}
