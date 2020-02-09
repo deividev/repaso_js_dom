@@ -16,12 +16,12 @@ function pintar(inputArray) {
         const li = document.createElement('li');
         const text = document.createTextNode(elem.text);
         const dates = document.createTextNode(` ${elem.end.locale('es').format('LLLL')} `);
+        const daysToFinish = document.createTextNode()
         // meter botones
-        li.appendChild(text);
+        li.appendChild(text);   
         li.appendChild(dates);
         li.classList.add("task");//a ese li que se crea le metemos la case "task"
         ul.appendChild(li);
-        input.value = "";
     });
 }
 function addToDo() {
