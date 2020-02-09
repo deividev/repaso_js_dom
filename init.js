@@ -1,4 +1,5 @@
 /* Integration */
+
 const tasks = [];
 const inputElement = document.getElementById('input');
 const ulElement = document.getElementById('list');
