@@ -17,15 +17,15 @@ function pintar(ulElement, tasks) {
  });
 }
 
-function addToDo(tasks, inputElement, ulElement, inputDate) {
+function addToDo(tasks, inputElement, ulElement, inputdate) {
   const text = inputElement.value;
   tasks.push({
       id: tasks.length,
       text: text,
-      end: moment(inputDate),
+      end: moment(inputdate),
       visible: true
   });
-  pintar(ulElement, tasks, inputDate);
+  pintar(ulElement, tasks, inputdate);
 }
 
 function addDeleteBtnElement() {
@@ -66,7 +66,6 @@ function deleteElement(event) {
   miArray.removeChild(event.currentTarget.parentElement);
 }
 function doneElement(event) {
-  //li.style.background = "#02db3c"
   const li = event.target.parentElement;
   li.classList.add('check');
   event.target.parentElement.removeChild(event.currentTarget);
@@ -100,13 +99,8 @@ function saveElement(event) {
   const text = document.createTextNode(inputValue);
   li.insertBefore(text, input);
   li.removeChild(input);
-  //btnEdit.removeEventListener('click', editElement);
   li.insertBefore(btnEdit, btnSave);
   li.removeChild(btnSave);
 }
 
-function addTodoEnter(event) {
-  if (event.keyCode === 13){
-      addToDo();
-  } 
-}
+
